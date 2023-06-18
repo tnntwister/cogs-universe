@@ -18,11 +18,9 @@
       }
     ],
     "scripts": [
-        "scripts/config.js",
-        "scripts/main.js",
-        "scripts/module.js"
     ],
     "esmodules": [
+      "scripts/main.js"
     ],
     "styles": [
       "styles/module.css"
@@ -42,7 +40,7 @@
       ]
     },
     "compatibility": {
-      "minimum": "10",
-      "verified": "10"
+      "minimum": "11",
+      "verified": "11"
     }
   }
