@@ -4,27 +4,14 @@
     "id": "modid",
     "version": "1.0",
     "authors": [
-    "title": "name",
-    "description": "desc",
-    "id": "modid",
-    "version": "1.0",
-    "authors": [
       {
-        "name": "theripper93",
-        "email": "tsplab@gmail.com",
-        "url": "https://www.patreon.com/theripper93"
         "name": "theripper93",
         "email": "tsplab@gmail.com",
         "url": "https://www.patreon.com/theripper93"
       }
     ],
     "languages": [
-    ],
-    "languages": [
       {
-        "lang": "en",
-        "name": "English",
-        "path": "languages/en.json"
         "lang": "en",
         "name": "English",
         "path": "languages/en.json"
