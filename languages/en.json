@@ -1,3 +1,7 @@
 {
-    "MODULE.hello": "hello"
+    "module-id": {
+        "settings": {},
+        "app": {},
+        "flags": {}
+    }
 }
