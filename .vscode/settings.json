@@ -8,6 +8,5 @@
 			"extensionName": ".css",
 			"savePath": "/styles"
 		}
-	],
-	"cmake.configureOnOpen": true,
+	]
 }
