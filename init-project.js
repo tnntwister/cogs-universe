@@ -12,7 +12,11 @@ function replaceInFile(filePath) {
       return;
     }
 
-    const updatedContent = data.replace(new RegExp(moduleId, 'g'), replacement);
+    let updatedContent = data.replace(new RegExp(moduleId, 'g'), replacement);
+
+    if (filePath.includes("module.json")) {
+      updatedContent = updatedContent.replace(new RegExp("module-name", 'g'), convertToTitleCase(replacement));
+    }
 
     fs.writeFile(filePath, updatedContent, 'utf8', (err) => {
       if (err) {
@@ -73,4 +77,11 @@ fs.unlink(scriptPath, (err) => {
     console.log('Script deleted successfully.');
   }
 });
+}
+
+function convertToTitleCase(inputString) {
+  return inputString
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
 }

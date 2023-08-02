@@ -19,7 +19,7 @@ fs.readFile(moduleJsonPath, 'utf8', (err, data) => {
     const distFolderPath = path.join(__dirname, 'dist');
 
     const filesToInclude = [
-      "module.json","styles", "scripts", "templates", "languages", "assets"
+      "module.json","styles", "index.js", "index.js.map", "templates", "languages", "assets"
     ];
 
     const options = {

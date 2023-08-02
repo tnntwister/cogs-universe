@@ -1,5 +1,5 @@
 {
-    "title": "name",
+    "title": "module-name",
     "description": "desc",
     "id": "module-id",
     "version": "1.0",
@@ -50,7 +50,7 @@
     "scripts": [
     ],
     "esmodules": [
-      "scripts/index.js"
+      "index.js"
     ],
     "styles": [
       "styles/module.css"
