@@ -6,5 +6,4 @@ export const MODULE_ID = "module-id";
 Hooks.on("init", () => {
     initConfig();
     registerSettings();
-    console.log("test")
 });
