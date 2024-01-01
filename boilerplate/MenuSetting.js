@@ -47,7 +47,7 @@ export class MenuSetting extends FormApplication {
         return game.settings.set(MODULE_ID, this.SETTING_KEY, formData);
     }
 
-    register() {
+    static register() {
         game.settings.registerMenu(MODULE_ID, this.APP_ID, {
             name: game.i18n.localize(`${MODULE_ID}.settings.${this.SETTING_KEY}.name`),
             label: game.i18n.localize(`${MODULE_ID}.settings.${this.SETTING_KEY}.label`),
