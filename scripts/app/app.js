@@ -1,10 +1,16 @@
+import { MODULE_ID } from "../main.js";
+
 export class MyApp extends Application {
     constructor() {
         super();
     }
 
     static get APP_ID() {
-        return "app-id";
+        return this.name.split(/(?=[A-Z])/).join('-').toLowerCase();
+    }
+
+    get APP_ID() {
+        return this.constructor.APP_ID;
     }
 
     static get defaultOptions() {
