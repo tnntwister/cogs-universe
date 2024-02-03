@@ -5,14 +5,14 @@ const types = ["FormApplication", "Application", "Menu"];
 
 const boilerplates = {
     FormApplication: "DocumentFormApp",
-    Application: "MenuSetting",
+    Application: "BasicApplication",
     Menu: "MenuSetting",
 };
 
 function createApplication(type, name) {
     // Type 1: FormApplication, 2: Application, 3: Menu
     const selectedType = types.includes(type) ? type : types[type - 1];
-
+    console.log(`Creating ${selectedType} ${name}...`);
     const slugifiedName = name.split(/(?=[A-Z])/).join('-').toLowerCase();
     const appFolderPath = "scripts/app";
     const templatesFolderPath = "templates";

@@ -1,6 +1,6 @@
 import { MODULE_ID } from "../main.js";
 
-export class DocumentFormApp extends Application {
+export class BasicApplication extends Application {
     constructor() {
         super();
     }
