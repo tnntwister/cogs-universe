@@ -69,6 +69,7 @@ export class Socket{
         "__$onMessage",
         "__$parseUsers",
         "register",
+        "USERS",
     ]
 
     static async __$onMessage(data) {
@@ -108,7 +109,7 @@ export class Socket{
         } else if (users === this.USERS.OTHERS) {
             options.users = active.filter(u => u.id !== game.user.id).map(u => u.id);
         } else if (users === this.USERS.FIRSTGM) {
-            options.users = active.find(u => u.isGM).map(u => u.id);
+            options.users = game.users.activeGM.id;
         } else if (users === this.USERS.SELF) {
             options.users = [game.user.id];
         }
