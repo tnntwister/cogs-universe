@@ -4,7 +4,7 @@ import {MODULE_ID} from "../main.js";
  * Imports the Socket class from the specified module.
  * @module lib/socket
  */
-import { Socket } from "./lib/socket.js";
+/* import { Socket } from "./lib/socket.js"; */
 
 /**
  * Registers a socket event with the specified name, callback function, and default options.
