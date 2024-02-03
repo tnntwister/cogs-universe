@@ -150,7 +150,7 @@ export class Socket{
                         for (const user of options.users) {
                             const key = `${eventId}.${user}`;
                             if (this.__$promises[key]) {
-                                this.__$promises[key].reject('timeout');
+                                this.__$promises[key].reject({user: game.users.get(user), response: 'timeout'});
                                 delete this.__$promises[key];
                             }
                         }
