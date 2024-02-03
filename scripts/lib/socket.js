@@ -1,57 +1,58 @@
-import {MODULE_ID} from "../main.js";
+import { MODULE_ID } from "../main.js";
 
-export let socket = null;
 
-export function initSocket() {
-    socket = new SocketInterface();
-    return socket;
-}
+let socketRegistered = false;
 
-class SocketInterface{
-    constructor () {
-        game.socket.on(`module.${MODULE_ID}`, this.__$onMessage);      
-        this.__$callbacks = {};
-        this.__$socket = game.socket;
-        this.__$promises = {};
-        this.USERS = {
-            GMS: "gms",
-            PLAYERS: "players",
-            ALL: "all",
-            OTHERS: "others",
-            FIRSTGM: "firstGM",
-            SELF: "self",
-        };
-        this.__$reserved = [
-            "__$eventName",
-            "__$response",
-            "__$onMessage",
-            "__$parseUsers",
-            "register",
-        ]
+export class Socket{
+
+    static __$callbacks = {};
+
+    static __$promises = {};
+
+    static USERS = {
+        GMS: "gms",
+        PLAYERS: "players",
+        ALL: "all",
+        OTHERS: "others",
+        FIRSTGM: "firstGM",
+        SELF: "self",
     }
 
-    async __$onMessage(data, options) {
+    static __$reserved = [
+        "__$eventName",
+        "__$response",
+        "__$onMessage",
+        "__$parseUsers",
+        "register",
+    ]
+
+    static async __$onMessage(data) {
+        const options = data.__$socketOptions;
         if (options.__$eventName === "__$response") {
             const key = options.__$responseKey;
             if (this.__$promises[key]) {
-                this.__$promises[key].resolve({user: options.user, response: data});
+                this.__$promises[key].resolve({user: game.users.get(options.__$userId), response: data.result});
                 delete this.__$promises[key];
             }
             return;
         }
         if (!options.users.includes(game.user.id)) return;
         const callback = this.__$callbacks[options.__$eventName];
+        delete data.__$socketOptions;
         const result = await callback(data);
         if(options.response) {
             const key = `${options.__$eventId}.${game.user.id}`;
-            this.__$socket.emit(`module.${MODULE_ID}`, result, {__$eventName: "__$response", __$responseKey: key, user: game.user.id});
+            const data = {__$socketOptions: {__$eventName: "__$response", __$responseKey: key, __$userId: game.user.id}, result};
+            this.__$socket.emit(`module.${MODULE_ID}`, data);
         }
     }
 
-    __$parseUsers(options) {
+    static __$parseUsers(options) {
+        if(Array.isArray(options?.users)) return options;
         if(typeof options === "string") options = {users: options};
         options.users = options.users || this.USERS.ALL;
         const active = game.users.filter(u => u.active);
+        const users = options.users;
         if (users === this.USERS.ALL) {
             options.users = active.map(u => u.id);
         } else if (users === this.USERS.GMS) {
@@ -68,7 +69,13 @@ class SocketInterface{
         return options;
     }
 
-    register(eventName, callback) {
+    static register(eventName, callback) {
+
+        if (!socketRegistered) {
+            this.__$socket = game.socket;
+            game.socket.on(`module.${MODULE_ID}`, this.__$onMessage.bind(this));      
+            socketRegistered = true;
+        }
 
         if (this.__$reserved.includes(eventName)) {
             throw new Error(`Socket event name ${eventName} is reserved`);
@@ -77,6 +84,7 @@ class SocketInterface{
         this.__$callbacks[eventName] = callback;
 
         const wrappedCallback = async (data, options = {}) => {
+            console.log("SOCKET - Sending", data, options);
             options = this.__$parseUsers(options);
             const eventId = randomID();
             options.__$eventId = eventId;
@@ -104,7 +112,8 @@ class SocketInterface{
 
             }
 
-            this.__$socket.emit(`module.${MODULE_ID}`, data, options);
+            data.__$socketOptions = options;
+            this.__$socket.emit(`module.${MODULE_ID}`, data);
 
             const results = [];
 
@@ -123,6 +132,4 @@ class SocketInterface{
 
         this[eventName] = wrappedCallback.bind(this);
     }
-            
-            
 }
