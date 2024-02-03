@@ -162,14 +162,16 @@ export class Socket{
 
             const results = [];
 
-            if (options.response) {
-                const allPromises = await Promise.all(promises);
-                for (const promise of allPromises) {
-                    results.push(promise);
-                }
-            }
             if (local) {
-                results.push({user: game.user.id, response: await callback(data)});
+                const localWrapper = async () => {
+                    return {user: game.user.id, response: await callback(data)};
+                }
+                promises.push(localWrapper());
+            }
+
+            const allPromises = await Promise.all(promises);
+            for (const promise of allPromises) {
+                results.push(promise);
             }
 
             return results;
