@@ -164,7 +164,7 @@ export class Socket{
 
             if (local) {
                 const localWrapper = async () => {
-                    return {user: game.user.id, response: await callback(data)};
+                    return {user: game.user, response: await callback(data)};
                 }
                 promises.push(localWrapper());
             }
