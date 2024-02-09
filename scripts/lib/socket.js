@@ -134,7 +134,7 @@ export class Socket {
 
         this.__$callbacks[eventName] = callback;
 
-        const wrappedCallback = async (data, options = {}) => {
+        const wrappedCallback = async (data = {}, options = {}) => {
             options = this.__$parseUsers(options);
             options = { ...defaultOptions, ...options };
             const eventId = randomID();
