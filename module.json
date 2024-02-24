@@ -1,13 +1,17 @@
 {
-  "title": "module-name",
-  "description": "desc",
-  "id": "module-id",
-  "version": "1.0",
+  "title": "cogs module universe template",
+  "description": "This module is meant to work with the Engrenages system. Within it, you can choose the cogs module you want to work with. There are several cogs modules available already, but you can make up your own by copying this one, edit it, and transform it with your game universe you want to play with.",
+  "id": "cogs-universe",
+  "version": "1.0.1",
   "authors": [
     {
       "name": "theripper93",
       "email": "tsplab@gmail.com",
       "url": "https://www.patreon.com/theripper93"
+    },
+    {
+      "name": "tnntwister",
+      "email": "internet@fxguillois.email"
     }
   ],
   "languages": [
@@ -17,55 +21,24 @@
       "path": "languages/en.json"
     },
     {
-      "lang": "ja",
-      "name": "日本語",
-      "path": "languages/ja.json"
-    },
-    {
-      "lang": "de",
-      "name": "Deutsch",
-      "path": "languages/de.json"
-    },
-    {
       "lang": "fr",
       "name": "Français",
       "path": "languages/fr.json"
-    },
-    {
-      "lang": "es",
-      "name": "Español",
-      "path": "languages/es.json"
-    },
-    {
-      "lang": "pt-br",
-      "name": "Português (Brasil)",
-      "path": "languages/pt-br.json"
-    },
-    {
-      "lang": "it",
-      "name": "Italiano",
-      "path": "languages/it.json"
     }
   ],
   "scripts": [],
   "esmodules": [
-    "index.js"
+    "scripts/main.js"
   ],
   "styles": [
     "styles/module.css"
   ],
   "packs": [],
-  "url": "https://github.com/theripper93/module-id",
-  "manifest": "https://github.com/theripper93/module-id/releases/latest/download/module.json",
-  "download": "",
+  "url": "https://github.com/tnntwister/cogs-universe",
+  "manifest": "https://raw.githubusercontent.com/tnntwister/cogs-universe/main/module.json",
+  "download": "https://github.com/tnntwister/cogs-universe/archive/refs/heads/main.zip",
   "relationships": {
-    "requires": [
-      {
-        "id": "lib-wrapper",
-        "type": "module",
-        "compatibility": {}
-      }
-    ]
+    "requires": []
   },
   "compatibility": {
     "minimum": "11",
