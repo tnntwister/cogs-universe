@@ -1,4 +1,4 @@
-// import { registerTours } from "./tour.mjs";
+import { createLaunchJournal } from "./journals.js";
 
 export const registerHooks = function (moduleId) {
     /**
@@ -7,7 +7,8 @@ export const registerHooks = function (moduleId) {
     console.log('registering hooks begins');
     Hooks.once("ready", async () => {
         console.info("Cogs universe | Module Initialized.");
-        // await registerTours();
+      
+        createLaunchJournal(moduleId);
     });
 
     // changement de la pause 

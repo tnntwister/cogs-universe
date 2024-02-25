@@ -9,3 +9,4 @@ Hooks.on("init", () => {
     registerSettings();
     registerHooks(MODULE_ID);
 });
+
