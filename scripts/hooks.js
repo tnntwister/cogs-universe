@@ -4,11 +4,11 @@ export const registerHooks = function (moduleId) {
     /**
      * Ready hook loads tables, and override's foundry's entity link functions to provide extension to pseudo entities
      */
-    console.log('registering hooks begins');
     Hooks.once("ready", async () => {
         console.info("Cogs universe | Module Initialized.");
-      
-        createLaunchJournal(moduleId);
+        if(game.settings.get(moduleId, 'first-run-journal-shown') !== true){
+            createLaunchJournal(moduleId);
+        }
     });
 
     // changement de la pause 

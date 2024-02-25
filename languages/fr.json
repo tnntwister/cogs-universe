@@ -1,7 +1,15 @@
 {
-    "cogs-universe": {
-        "settings": {},
-        "app": {},
-        "flags": {}
+ "SETTINGS": {
+    "module": {
+      "first_journal": {
+        "name":"Désactiver l'affichage de la présentation du module",
+        "hint":"Ce pop-up au lancement vous ennuie ? Vous pouvez le désactiver ici."
+      }
     }
+  },
+"cogs-universe": {
+    "settings": {},
+    "app": {},
+    "flags": {}
+}
 }
